@@ -1,0 +1,89 @@
+﻿@model ProveedoresViewModel
+@{
+}
+
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+	<link rel="stylesheet" type="text/css" href="~/css/provedor.css" />
+    </head>
+    <body>
+
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-sm-center h-100">
+				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+					<div class="text-center my-5">
+						<img src="img/tiendad.jpg" alt="logo" width="100">
+					</div>
+					
+					<div class="card shadow-lg">
+						<div class="card-body p-5">
+							
+							<h1 class="fs-4 card-title fw-bold mb-4"> Añadir Proveedor</h1>
+							<form asp-action="RegistrarProveedor" asp-controller="Proveedores" method="post">
+								<div class="mb-3">
+									<div class="mb-2 w-100">
+										<label class="text-muted" for="text">Cedula</label>
+									</div>
+									<input id="cant" type="text" asp-for="cedula" class="form-control"  required>
+									<div class="invalid-feedback">
+									</div>
+								</div>
+								<div class="mb-3">
+									<label class="mb-2 text-muted" for="nombre">Nombre</label>
+									<input id="idproc" type="text" asp-for="Nombre" class="form-control" value="" required autofocus>
+									<div class="invalid-feedback">
+									</div>
+
+									<div class="mb-3">
+										<div class="mb-2 w-100">
+											<label class="text-muted" for="text">Apellido</label>
+										</div>
+										<input id="cant" type="text" asp-for="Apellido" class="form-control"  required>
+										<div class="invalid-feedback">
+										</div>
+									</div>
+
+									<div class="mb-3">
+										<div class="mb-2 w-100">
+											<label class="text-muted" for="text">N° de Telefono </label>
+										</div>
+										<input id="cant" type="text" asp-for="NTelefono" class="form-control"  required>
+										<div class="invalid-feedback">
+										</div>
+									</div>
+									<div class="mb-3">
+										<div class="mb-2 w-100">
+											<label class="text-muted" for="text">Correo electronico</label>
+										</div>
+										<input id="cant" type="text" asp-for="Correo" class="form-control"  required>
+										<div class="invalid-feedback">
+										</div>
+									</div>
+
+									<div class="mb-3">
+										<div class="mb-2 w-100">
+											<label class="text-muted" for="text"> empresa al cual pertenece </label>
+										</div>
+										<input id="cant" type="text" asp-for="empresa" class="form-control"  required>
+										<div class="invalid-feedback">
+										</div>
+									</div>
+									<button type="submit" class="btn btn-primary ms-auto">
+										Guardar Proveedor
+									</button>
+							</form>
+							
+						
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+										
+
+
+	</body>
+    </html>

@@ -1,0 +1,26 @@
+﻿@model RegViewModel
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingreso a la Tienda</title>
+</head>
+<body>
+    <h1>Bienvenido a la Tienda</h1>
+    <p>Por favor, selecciona tu rol:</p>
+    <form asp-action="quieneres" method="post">
+        <input type="radio" id="admin" name="Role" value="admin">
+        <label for="admin">Administrador</label><br>
+        <input type="radio" id="user" name="Role" value="user">
+        <label for="user">Usuario</label><br><br>
+        <input type="submit" value="Ingresar">
+    </form>
+
+    @if (ViewBag.Message != null)
+    {
+        <p>@ViewBag.Message</p>
+    }
+</body>
+</html>

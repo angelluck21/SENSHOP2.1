@@ -1,0 +1,74 @@
+﻿@model ProductoViewModel
+@{
+}
+
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title>
+        <meta charset="utf-8">
+        <meta name="author" content="Muhamad Nauval Azhar">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="description" content="This is a login page template based on Bootstrap 5">
+        <title>Bootstrap 5 Login Page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    </title>
+    </head>
+    <body>
+        <h5 class="text-center"> PRODUCTOS</h5>
+    <form asp-action="producto" asp-controller="Producto" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="code">Codigo</label>
+            <input type="number" asp-for="code" class="form-control" id="code"  placeholder="Ingrese el codigo">
+           
+        </div>
+        <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text"  asp-for="name" class="form-control" id="name" placeholder="Su nombre">
+        </div>
+      
+        <div class="mb-3">
+            <label for="" class="form-label">Descrpcion Pequeña</label>
+            <input type="text" asp-for="descripsionP" class="form-control" id="exampleFormControlInput1">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Descripcion Extensa</label>
+            <textarea class="form-control" asp-for="descripsionE" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <small id="pequeño" class="form-text text-muted">Definer maximo de caracteres</small>
+
+        </div>
+       
+        <div class="form-group">
+            <label for="name">Precio Venta</label>
+            <input type="text" asp-for="p_venta" class="form-control" id="exampleInputPassword1" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect2">Estado</label>
+            <select multiple class="form-control" id="exampleFormControlSelect2">
+                <option>Activo</option>
+                <option>Inactivo</option>
+               
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="name">Marca</label>
+            <input type="text" asp-for="Marca" class="form-control" id="exampleInputPassword1" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="name">Unidades</label>
+            <input type="text"asp-for="Uni" class="form-control" id="exampleInputPassword1" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="name">Seleccionar imagen</label>
+            <input type="file" class="form-control" asp-for=" sl_img" id="exampleInputPassword1" placeholder="">
+        </div>
+
+        <button contextmenu="center" type="submit" class="btn btn-primary">Guardar</button>
+        
+    </form>
+    <form action="Tienda" method="post"><button type="submit" class="btn btn-primary">Salir</button></form>
+   
+</body>
+
+    </html>
+    

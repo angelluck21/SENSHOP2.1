@@ -1,0 +1,181 @@
+﻿@model IEnumerable<ProductoViewModel>
+@{
+    ViewData["Title"] = "Pagina de productos";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SENSHOP</title>
+    <link rel="stylesheet" href="~/css/diseñotiendar.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+    <form asp-action="Buscar" asp-controller="Producto" method="post">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">SENSHOP</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" asp-action="login" asp-controller="home">Iniciar sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="producto" asp-controller="home">Añadir</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="CarrodeC" asp-controller="CAr">Carro</a>
+                        </li>
+                    </ul>
+                    <i class="fas fa-shopping-cart"></i>
+                    <input class="form-control me-2" type="search" placeholder="Buscar productos..." aria-label="Buscar">
+                    <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i> Buscar</button>
+                </div>
+            </div>
+        </nav>
+    </form>
+
+    <div id="carouselExampleFade" class="carousel slide carousel-fade">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/img/SENSHOP (1).png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="/img/SENSHOP2.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="~/img/SENSHOP (2).png" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+   
+
+
+    <div class="modal fade" id="modalprod" tabindex="-1" aria-labelledby="modalprodLabel" aria-hidden="true">
+        <div class=" modal-dialog">
+            <div class=" modal-content">
+                <div class=" modal-header">
+                    <h5 class="  modal-title" id="modalpdLabel">Producto</h5>
+                    <button type="button" class="btn-close btnna" data-bs-dismiss="modal" arial-label="close"></button>
+
+                </div>
+                <div class=" modal-body" id="modalBody">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cerrar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <form asp-action="PDF" asp-controller="Home" method="post">
+        <button class="btn btn-outline-success" type="submit">PDF</button>
+    </form>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '.btnna', function () {
+                $('#modalprod').modal('show');
+                var productoid = this.id;
+                $.ajax({
+                    url: '/Producto/detalle',
+                    type: 'GET',
+                    data: { id: productoid },
+                    success: function (data) {
+                        const contenido = `<div>
+
+                                                               <img width= 472px height="300px"  src="${data.urlimagen}"/>
+                                                               <h3> <strong>${data.name} </strong></h3>
+                                                                                       <p style="color:#28b463">  <strong> $: ${data.p_venta} </strong> </p>
+                                                                                       <p>  <strong> ${data.descripsionE}</strong></p>
+                                                                             <p> <strong>Marca:</strong> ${data.Marca} </P>
+                                                                      <p> ${data.descripsionP}</p>
+
+                                                    </div>`;
+                        $('#modalBody').html(contenido);
+
+                    },
+                    Error: function (error) {
+                        $('#modalBody').html('Error al cargar los datos');
+                        console.error('error en la llamada AJAX:', Error);
+                    }
+                });
+            });
+
+        });
+
+
+
+    </script>
+
+</body>
+<br />
+<br />
+<br />
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col">
+                <h4>CONTACTANOS</h4>
+                <ul>
+                    <li><a href="home/contactos">Contactos</a></li>
+                    <li><a href="#">our services</a></li>
+                    <li><a href="#">privacy policy</a></li>
+                    <li><a href="#">affiliate program</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>get help</h4>
+                <ul>
+                    <li><a asp-action="kks" asp-controller="Home">COMPRAS</a></li>
+                    <li><a href="#">shipping</a></li>
+                    <li><a href="#">returns</a></li>
+                    <li><a href="#">order status</a></li>
+                    <li><a href="#">payment options</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>online shop</h4>
+                <ul>
+                    <li><a href="#">watch</a></li>
+                    <li><a href="#">bag</a></li>
+                    <li><a href="#">shoes</a></li>
+                    <li><a href="#">dress</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>follow us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</html>
+
+
+
